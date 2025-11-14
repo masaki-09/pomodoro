@@ -1,0 +1,128 @@
+/* --- 基本設定 --- */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+    position: relative;
+    /* ★ 変更：アニメーションを削除しました */
+    overflow: hidden;
+    
+    /* カラーモード：デフォルト */
+    background: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+    color: #333;
+}
+
+/* カラーモード：休憩 */
+body.break-bg {
+    background: linear-gradient(120deg, #a8e063 0%, #56ab2f 100%);
+}
+
+/* --- ★★★ 白黒モード ★★★ */
+body.monochrome {
+    background: #121212;
+    color: #f5f5f5;
+}
+body.monochrome.break-bg {
+    background: #f5f5f5;
+    color: #121212;
+}
+
+/* --- 角のボタン共通スタイル --- */
+.corner-btn {
+    position: absolute; display: flex; align-items: center; justify-content: center;
+    width: 50px; height: 50px; border-radius: 50%; padding: 0; z-index: 10;
+    cursor: pointer; transition: all 0.2s ease;
+    
+    border: 2px solid #333;
+    color: #333;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+.corner-btn:hover { transform: scale(1.05); }
+
+/* 白黒モード時の角ボタン */
+body.monochrome .corner-btn {
+    border-color: #f5f5f5;
+    color: #f5f5f5;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+body.monochrome.break-bg .corner-btn {
+    border-color: #121212;
+    color: #121212;
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.corner-btn svg { width: 24px; height: 24px; }
+.home-button { top: 25px; left: 25px; text-decoration: none; }
+.home-button svg { width: 28px; height: 28px; }
+#fullscreen-btn { top: 25px; right: 25px; }
+#color-mode-btn { bottom: 25px; left: 25px; }
+
+/* ボタンのホバーエフェクト */
+.corner-btn:hover { background-color: #333; color: #fff; }
+body.monochrome .corner-btn:hover { background-color: #f5f5f5; color: #121212; }
+body.monochrome.break-bg .corner-btn:hover { background-color: #121212; color: #f5f5f5; }
+
+/* --- UIコンテナ --- */
+#pomodoro-container, #clock-container {
+    width: 100%; display: flex; flex-direction: column;
+    justify-content: center; align-items: center;
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+/* --- ポモドーロタイマー --- */
+.timer-container { margin-bottom: 2rem; }
+#mode { font-size: 2rem; font-weight: 300; color: #555; }
+body.monochrome #mode { color: #aaa; }
+body.monochrome.break-bg #mode { color: #555; }
+
+#time, #current-time {
+    font-size: 10rem; font-weight: bold;
+}
+.controls { display: flex; gap: 10px; }
+.controls button, .stats button, #back-button {
+    padding: 10px 20px; font-size: 1rem; cursor: pointer;
+    border-radius: 8px; transition: all 0.2s ease;
+    
+    background-color: transparent;
+    border: 2px solid #333;
+    color: #333;
+}
+.controls button:hover, .stats button:hover, #back-button:hover {
+    background-color: #333;
+    color: white;
+}
+/* 白黒モード時のボタン */
+body.monochrome .controls button, body.monochrome .stats button, body.monochrome #back-button {
+    border-color: #f5f5f5; color: #f5f5f5;
+}
+body.monochrome.break-bg .controls button, body.monochrome.break-bg .stats button, body.monochrome.break-bg #back-button {
+    border-color: #121212; color: #121212;
+}
+body.monochrome .controls button:hover, body.monochrome .stats button:hover, body.monochrome #back-button:hover {
+    background-color: #f5f5f5; color: #121212;
+}
+body.monochrome.break-bg .controls button:hover, body.monochrome.break-bg .stats button:hover, body.monochrome.break-bg #back-button:hover {
+    background-color: #121212; color: #f5f5f5;
+}
+
+.stats { margin-top: 2rem; font-size: 1.2rem; }
+.stats p { margin: 5px 0; }
+.stats button { margin-top: 10px; }
+
+/* --- 現在時刻表示 --- */
+#clock-container { position: absolute; }
+#back-button { margin-top: 2rem; }
+
+/* --- 表示切替アニメーション --- */
+.hidden {
+    opacity: 0;
+    transform: scale(0.95);
+    pointer-events: none;
+}
